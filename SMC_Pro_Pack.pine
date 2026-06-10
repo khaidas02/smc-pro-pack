@@ -1,0 +1,295 @@
+//@version=5
+indicator("SMC Pro Pack", overlay=true, max_bars_back=500, max_labels_count=500)
+
+// ============================================================
+//  SMC PRO PACK — 4 Smart Money Concepts Indicators
+//  Liquidity Sweep · Fair Value Gap · Order Block · Structure
+// ============================================================
+
+// ---------- USER INPUTS ----------
+showLiqSweeps       = input.bool(true,  "🔴 Liquidity Sweeps")
+showFVGs            = input.bool(true,  "📊 Fair Value Gaps")
+showOrderBlocks     = input.bool(true,  "🧱 Order Blocks")
+showStructure       = input.bool(true,  "📈 Market Structure")
+lookback            = input.int(100,    "Lookback Period", minval=30)
+fvgMaxAge           = input.int(20,    "FVG Max Age (bars)", minval=5)
+obSensitivity       = input.int(3,    "Order Block Sensitivity", minval=1, maxval=10)
+sweepTolerance      = input.float(0.001, "Sweep Tolerance (%)", step=0.0005)
+
+// ============================================================
+//  MODULE 1: LIQUIDITY SWEEP DETECTOR
+// ============================================================
+var label[] sweepLabels = na
+var int[]   sweepBarIndex = na
+if na(sweepLabels)
+    sweepLabels := array.new<label>()
+    sweepBarIndex := array.new<int>()
+
+detectSweeps() =>
+    bool isSweep = false
+    string sweepType = ""
+    int sweepBar = na
+    // Bullish sweep — price dips below recent swing low then closes back above
+    for i = 1 to lookback
+        swingLow = ta.lowest(low, i)
+        if low[1] < swingLow[1] and close > swingLow[1] and low[1] == swingLow
+            isSweep := true
+            sweepType := "Bullish Sweep"
+            sweepBar := bar_index[1]
+            break
+    // Bearish sweep — price spikes above recent swing high then closes back below
+    if not isSweep
+        for i = 1 to lookback
+            swingHigh = ta.highest(high, i)
+            if high[1] > swingHigh[1] and close < swingHigh[1] and high[1] == swingHigh
+                isSweep := true
+                sweepType := "Bearish Sweep"
+                sweepBar := bar_index[1]
+                break
+    [isSweep, sweepType, sweepBar]
+
+if showLiqSweeps
+    [sweep, sType, sBar] = detectSweeps()
+    if sweep and not na(sBar)
+        sweepLabel = label.new(
+             sBar, 
+             sType == "Bullish Sweep" ? low[sBar - bar_index + 1] * 0.998 : high[sBar - bar_index + 1] * 1.002,
+             sType == "Bullish Sweep" ? "⚡ BUY-SIDE LIQ SWEEP" : "⚡ SELL-SIDE LIQ SWEEP",
+             style=sType == "Bullish Sweep" ? label.style_label_up : label.style_label_down,
+             color=sType == "Bullish Sweep" ? color.green : color.red,
+             textcolor=sType == "Bullish Sweep" ? color.new(color.green, 20) : color.new(color.red, 20),
+             size=size.small
+        )
+        array.push(sweepLabels, sweepLabel)
+
+// Clean old sweep labels
+if barstate.islast and array.size(sweepLabels) > 0
+    for i = array.size(sweepLabels) - 1 to 0
+        if na(label.get_x(array.get(sweepLabels, i))) or bar_index - label.get_x(array.get(sweepLabels, i)) > 50
+            label.delete(array.get(sweepLabels, i))
+            array.remove(sweepLabels, i)
+
+// ============================================================
+//  MODULE 2: FAIR VALUE GAP (FVG) MAPPER
+// ============================================================
+var line[] fvgLines = na
+var label[] fvgLabels = na
+if na(fvgLines)
+    fvgLines := array.new<line>()
+    fvgLabels := array.new<label>()
+
+detectFVG() =>
+    float fvgTop = na
+    float fvgBot = na
+    int fvgStart = na
+    // 3-candle FVG: candle high < previous candle high AND candle low > previous candle low
+    // The gap is between candle[2].high and candle[2].low (bullish gap)
+    // or candle[2].low and candle[2].high (bearish gap implied by overlap)
+    if high[2] < low     // Bullish FVG — gap up
+        fvgTop := low
+        fvgBot := high[2]
+        fvgStart := bar_index[2]
+    else if low[2] > high  // Bearish FVG — gap down
+        fvgTop := low[2]
+        fvgBot := high
+        fvgStart := bar_index[2]
+    [fvgTop, fvgBot, fvgStart]
+
+if showFVGs
+    [fvgTop, fvgBot, fvgStart] = detectFVG()
+    if not na(fvgTop) and not na(fvgBot) and not na(fvgStart)
+        if math.abs(fvgTop - fvgBot) / close > 0.0002  // filter micro-gaps
+            // Check if still within age limit
+            barsAgo = bar_index - fvgStart
+            if barsAgo <= fvgMaxAge
+                // Create filled zone using box — only if we have a valid range
+                gapMid = (fvgTop + fvgBot) / 2
+                fillLine = line.new(
+                    fvgStart, fvgTop, fvgStart + 1, fvgBot,
+                    extend=extend.right,
+                    color=color.new(color.blue, 60),
+                    style=line.style_solid,
+                    width=2
+                )
+                array.push(fvgLines, fillLine)
+                gapLabel = label.new(
+                    fvgStart, gapMid,
+                    str.tostring(barsAgo) + " bars",
+                    style=label.style_none,
+                    textcolor=color.new(color.blue, 30),
+                    size=size.tiny
+                )
+                array.push(fvgLabels, gapLabel)
+
+// Clean old FVG lines
+if barstate.islast and array.size(fvgLines) > 0
+    for i = array.size(fvgLines) - 1 to 0
+        curLine = array.get(fvgLines, i)
+        if not na(line.get_x1(curLine)) and bar_index - line.get_x1(curLine) > fvgMaxAge + 5
+            line.delete(curLine)
+            if i < array.size(fvgLabels)
+                label.delete(array.get(fvgLabels, i))
+                array.remove(fvgLabels, i)
+            array.remove(fvgLines, i)
+
+// ============================================================
+//  MODULE 3: ORDER BLOCK IDENTIFIER
+// ============================================================
+var line[] obLines = na
+var label[] obLabels = na
+var int[] obData = na
+if na(obLines)
+    obLines := array.new<line>()
+    obLabels := array.new<label>()
+    obData := array.new<int>()
+
+detectOB() =>
+    float obTop = na
+    float obBot = na
+    int obStart = na
+    bool obBullish = false
+    // A bullish order block = last down candle before a strong up move
+    // A bearish order block = last up candle before a strong down move
+    strongMove = (close - close[1]) / close[1]
+    if strongMove > 0.002 and close[1] < open[1] and close[1] < close[2]
+        // Bullish OB: previous down candle
+        obTop := math.max(high[1], open[1])
+        obBot := math.min(low[1], close[1])
+        obStart := bar_index[1]
+        obBullish := true
+    else if strongMove < -0.002 and close[1] > open[1] and close[1] > close[2]
+        // Bearish OB: previous up candle
+        obTop := math.max(high[1], close[1])
+        obBot := math.min(low[1], open[1])
+        obStart := bar_index[1]
+        obBullish := false
+    [obTop, obBot, obStart, obBullish]
+
+if showOrderBlocks
+    [obTop, obBot, obStart, obBullish] = detectOB()
+    if not na(obTop) and not na(obBot) and not na(obStart)
+        obColor = obBullish ? color.new(color.green, 50) : color.new(color.red, 50)
+        obLine = line.new(
+            obStart, obTop, obStart+1, obBot,
+            extend=extend.right,
+            color=obColor,
+            style=line.style_dotted,
+            width=1
+        )
+        array.push(obLines, obLine)
+        role = obBullish ? "🟢 BULLISH OB" : "🔴 BEARISH OB"
+        obLabel = label.new(
+            obStart, obBullish ? obBot : obTop,
+            role,
+            style=label.style_label_center,
+            color=obColor,
+            textcolor=color.white,
+            size=size.tiny
+        )
+        array.push(obLabels, obLabel)
+
+// Clean old OB lines
+if barstate.islast and array.size(obLines) > 0
+    for i = array.size(obLines) - 1 to 0
+        curObLine = array.get(obLines, i)
+        if not na(line.get_x1(curObLine)) and bar_index - line.get_x1(curObLine) > 30
+            line.delete(curObLine)
+            if i < array.size(obLabels)
+                label.delete(array.get(obLabels, i))
+                array.remove(obLabels, i)
+            array.remove(obLines, i)
+
+// ============================================================
+//  MODULE 4: MARKET STRUCTURE BREAK (MSB)
+// ============================================================
+var line[] structLines = na
+var label[] structLabels = na
+if na(structLines)
+    structLines := array.new<line>()
+    structLabels := array.new<label>()
+
+var float lastHH = na
+var float lastHL = na
+var float lastLH = na
+var float lastLL = na
+var int lastHHBar = na
+var int lastHLBar = na
+var int lastLHBar = na
+var int lastLLBar = na
+
+updateStructure() =>
+    // Find recent swing highs and lows
+    swingHigh = ta.pivothigh(high, 5, 5)
+    swingLow  = ta.pivotlow(low, 5, 5)
+    
+    if not na(swingHigh)
+        if na(lastHH) or swingHigh > lastHH
+            if not na(lastHH) and not na(lastHHBar)
+                // Draw MSB for bearish structure break
+                msbLine = line.new(lastHHBar, lastHH, bar_index, swingHigh,
+                    color=color.new(color.purple, 40),
+                    style=line.style_dashed,
+                    width=1)
+                array.push(structLines, msbLine)
+                msbLabel = label.new(bar_index, swingHigh,
+                    "⚠️ MSB (Bearish)",
+                    style=label.style_label_down,
+                    color=color.new(color.purple, 50),
+                    textcolor=color.white,
+                    size=size.tiny)
+                array.push(structLabels, msbLabel)
+            lastHH := swingHigh
+            lastHHBar := bar_index
+        lastHL := swingHigh
+        lastHLBar := bar_index
+    
+    if not na(swingLow)
+        if na(lastLL) or swingLow < lastLL
+            if not na(lastLL) and not na(lastLLBar)
+                // Draw MSB for bullish structure break
+                msbLine2 = line.new(lastLLBar, lastLL, bar_index, swingLow,
+                    color=color.new(color.teal, 40),
+                    style=line.style_dashed,
+                    width=1)
+                array.push(structLines, msbLine2)
+                msbLabel2 = label.new(bar_index, swingLow,
+                    "✅ MSB (Bullish)",
+                    style=label.style_label_up,
+                    color=color.new(color.teal, 50),
+                    textcolor=color.white,
+                    size=size.tiny)
+                array.push(structLabels, msbLabel2)
+            lastLL := swingLow
+            lastLLBar := bar_index
+        lastLH := swingLow
+        lastLHBar := bar_index
+
+if showStructure
+    updateStructure()
+
+// ============================================================
+//  INFORMATION PANEL (top-right corner)
+// ============================================================
+if barstate.islast
+    panelText = "🟣 SMC PRO PACK v1.0\n"
+    panelText += "━━━━━━━━━━━━━━━━\n"
+    panelText += "Active Modules:\n"
+    panelText += (showLiqSweeps ? "✅" : "⬜") + " Liquidity Sweeps\n"
+    panelText += (showFVGs ? "✅" : "⬜") + " Fair Value Gaps\n"
+    panelText += (showOrderBlocks ? "✅" : "⬜") + " Order Blocks\n"
+    panelText += (showStructure ? "✅" : "⬜") + " Market Structure\n"
+    panelText += "━━━━━━━━━━━━━━━━\n"
+    panelText += "🔒 Licensed | SMC Pro Pack"
+    
+    var infoLabel = label.new(bar_index, high * 1.02, panelText,
+         style=label.style_label_center,
+         color=color.new(#1e1e2e, 20),
+         textcolor=color.white,
+         size=size.small,
+         textalign=text.align_center)
+
+// ============================================================
+//  END OF SMC PRO PACK
+//  ⚠️ This script is licensed software.
+//  Unauthorized distribution is prohibited.
+// ============================================================
