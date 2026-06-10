@@ -1,0 +1,32 @@
+{
+  "run": "ZERO_CAPITAL_BOOTSTRAP",
+  "total_budget_usd": 3.57,
+  "phase": "PHASE_2_MARKETING",
+  "spend_log": [
+    {
+      "task": "Write SEO-optimized README.md (6.9KB, 0.7K tokens out)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "Write fetch_leads.js v2 (Pushshift-based Reddit scraper, 5KB)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "Write 3 video scripts (7KB, ~0.8K tokens out)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "Live Reddit lead harvesting via web_fetch",
+      "est_cost_usd": 0.001
+    },
+    {
+      "task": "Error recovery: 2 scraper versions, 2 build fixes, search fallback",
+      "est_cost_usd": 0.005
+    }
+  ],
+  "total_phase2_spend_usd": 0.012,
+  "cumulative_all_phases_spend_usd": 0.029,
+  "remaining_budget_usd": 3.541,
+  "target_product_url": "https://smc-pro-pack.surge.sh",
+  "payout_address": "0x34d647d24a296916bee1253fc03dc2b242eaad6f"
+}
