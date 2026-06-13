@@ -1,56 +1,11 @@
 ╔══════════════════════════════════════════════════════════╗
-║  SMC Pro Pack — Reddit Leads Export (Live Harvested)   ║
-║  Generated: 2026-06-10T22:43:00.000Z                   ║
+║  SMC Pro Pack — Reddit Leads (Pushshift)               ║
+║  Generated: 2026-06-13T13:03:54.855Z               ║
 ╚══════════════════════════════════════════════════════════╝
 
-Total: 2 live threads + 5 high-value static leads
+Total: 0
 
-─── Live Leads (from live fetch) ───
+── Quick Links ──
 
-[1] "Why LLMs (ChatGPT, Claude) struggle with Pine Script to Python conversion"
-    URL: https://reddit.com/r/algotrading/comments/1tesopn/why_llms_chatgpt_claude_struggle_with_pine_script/
-    r/algotrading | 0 pts / 7 comments | 25 days old
-    Match: "Pine Script" — deep technical post about Pine Script execution model
-    → ACTION: Reply with SMC Pro Pack as real-world example of well-written Pine Script
-
-[2] "The absolute nightmare of premium historical data"
-    URL: https://old.reddit.com/r/algotrading/comments/1tw23l4/the_absolute_nightmare_of_premium_historical_data/
-    r/algotrading | 72 pts / 92 comments | 7 days old
-    Match: "historical data" — trader frustrated with data quality
-    → ACTION: Reply showing how SMC Pro Pack works on clean TV data, no external data needed
-
-─── High-Value Static Leads (for manual outreach) ───
-
-[3] r/TradingView — "Looking for a good FVG indicator"
-    Search trend: "fair value gap" + "FVG" — recurring weekly
-    → TEMPLATE: "Check out smc-pro-pack.surge.sh — 4 SMC indicators, 35 USDC one-time"
-
-[4] r/algotrading — "Best Pine Script indicators for ICT concepts"
-    Search trend: "ICT" + "Pine Script" — monthly recurring
-    → TEMPLATE: "SMC Pro Pack has 4 modules. FVG + Order Block + Sweep + MSB. smc-pro-pack.surge.sh"
-
-[5] r/Forex — "Order block strategy not working"
-    Search trend: "order block" — daily posts
-    → TEMPLATE: "You might be identifying OBs wrong. This script auto-marks them. smc-pro-pack.surge.sh"
-
-[6] r/CryptoMarkets — "SMC trading guide for beginners"
-    Search trend: "smart money concepts" — weekly
-    → TEMPLATE: "Start with these 4 indicators. They do the analysis for you. smc-pro-pack.surge.sh"
-
-[7] r/Daytrading — "What indicators do you actually use?"
-    Search trend: "TradingView indicators" — daily recurring
-    → TEMPLATE: "SMC Pro Pack — 4 indicators in one. 35 USDC lifetime. smc-pro-pack.surge.sh"
-
-─── Reply Templates ───
-
-TEMPLATE A (FVG/SMC request):
-"Been using SMC Pro Pack for this exact use case — 4 modules (liquidity sweeps, FVGs, order blocks, structure breaks) in one Pine Script. One-time 35 USDC, no subs. https://smc-pro-pack.surge.sh"
-
-TEMPLATE B (Indicator suggestion):
-"If you want clean, real-time SMC indicators without repainting, check out SMC Pro Pack. 35 USDC lifetime license. https://smc-pro-pack.surge.sh"
-
-TEMPLATE C (Educational reply):
-"Fair Value Gaps have ~70% fill probability. I use this pack that auto-maps them with time decay — stops me from chasing stale gaps. https://smc-pro-pack.surge.sh"
-
-─── SMC Pro Pack ───
+── SMC Pro Pack ──
 https://smc-pro-pack.surge.sh
