@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Code a Liquidity Sweep Indicator in Pine Script v5 — Full Tutorial</title>
+  <meta name="description" content="Step-by-step tutorial: Build a professional liquidity sweep detector in Pine Script v5. Covers swing point detection, stop-run identification, labels, and alerts. Includes full code." />
+  <meta name="keywords" content="Pine Script v5 tutorial, liquidity sweep indicator, TradingView indicator tutorial, smart money concepts Pine Script, ICT indicator code, SMC indicator builder" />
+  <meta property="og:title" content="How to Code a Liquidity Sweep Indicator in Pine Script v5" />
+  <meta property="og:description" content="Complete tutorial with full code. Detect buy-side and sell-side liquidity grabs on any timeframe." />
+  <meta property="og:type" content="article" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; line-height: 1.8; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    h1 { font-size: 2rem; line-height: 1.3; margin: 2rem 0 0.5rem; background: linear-gradient(135deg, #7c3aed, #00f5d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; color: #00f5d4; }
+    h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: #7c3aed; }
+    p { color: #94a3b8; margin-bottom: 1rem; }
+    a { color: #00f5d4; }
+    code { background: #1a1a2e; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.85rem; color: #00f5d4; }
+    pre { background: #1a1a2e; border: 1px solid #2d2d50; border-radius: 0.75rem; padding: 1.25rem; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+    pre code { background: none; padding: 0; color: inherit; }
+    ul, ol { color: #94a3b8; margin-bottom: 1rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    .cta-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,245,212,0.1)); border: 1px solid #2d2d50; border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .cta-box p { margin-bottom: 0.5rem; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #7c3aed, #00f5d4); color: white; margin-top: 0.5rem; }
+    hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+    .toc { background: #1a1a2e; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0; }
+    .toc a { display: block; padding: 0.25rem 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 0;">📘 Tutorial · 15 min read</p>
+    <h1>How to Code a Liquidity Sweep Indicator in Pine Script v5</h1>
+    <p style="font-size: 1.05rem;">Build a professional-grade liquidity sweep detector from scratch — the same logic used by institutional SMC/ICT traders. Full code included.</p>
+
+    <div class="toc">
+      <strong>Table of Contents</strong>
+      <a href="#intro">1. What is a Liquidity Sweep?</a>
+      <a href="#setup">2. Setting Up Your Pine Script</a>
+      <a href="#swing">3. Detecting Swing Highs and Lows</a>
+      <a href="#sweep">4. The Sweep Detection Logic</a>
+      <a href="#visuals">5. Visual Labels and Alerts</a>
+      <a href="#optimize">6. Optimization and User Controls</a>
+      <a href="#full">7. Complete Code</a>
+    </div>
+
+    <h2 id="intro">1. What is a Liquidity Sweep?</h2>
+    <p>A liquidity sweep (or "stop hunt") happens when price aggressively pushes beyond a recent swing high or swing low — grabbing all the stop-losses sitting there — then immediately reverses. This is the foundational concept in ICT/SMC trading.</p>
+    <p><strong>Bullish sweep:</strong> Price dips below a swing low (triggering sell stops), then reverses up.</p>
+    <p><strong>Bearish sweep:</strong> Price spikes above a swing high (triggering buy stops), then reverses down.</p>
+    <p>Detecting these in real time gives you the edge to enter exactly where smart money does.</p>
+
+    <h2 id="setup">2. Setting Up Your Pine Script</h2>
+    <p>Start with the indicator declaration. We'll use <code>overlay=true</code> so everything draws on the price chart.</p>
+    <pre><code>//@version=5
+indicator("Liquidity Sweep Detector", overlay=true, max_labels_count=500)</code></pre>
+    <p>We set <code>max_labels_count=500</code> because sweep labels accumulate over time and we don't want Pine's default 50-label limit.</p>
+
+    <h2 id="swing">3. Detecting Swing Highs and Lows</h2>
+    <p>Pine Script v5 has <code>ta.pivothigh()</code> and <code>ta.pivotlow()</code> for swing point detection, but these only look at a fixed lookback window. For sweeps, we want a rolling scan that checks <em>every possible swing point</em> within a range.</p>
+    <p>Here's the approach using a loop:</p>
+    <pre><code>lookback = input.int(100, "Lookback Period", minval=30)
+
+// Find the nearest swing low within lookback
+swingLowPrice = ta.lowest(low, lookback)
+swingLowBar  = ta.barssince(low == swingLowPrice)
+
+// Find the nearest swing high within lookback
+swingHighPrice = ta.highest(high, lookback)
+swingHighBar   = ta.barssince(high == swingHighPrice)</code></pre>
+    <p><code>ta.lowest()</code> and <code>ta.highest()</code> find the extreme values. <code>ta.barssince()</code> tells us how many bars ago that level occurred.</p>
+
+    <h2 id="sweep">4. The Sweep Detection Logic</h2>
+    <p>A sweep requires two conditions:</p>
+    <ol>
+      <li>Price breaks beyond the swing point (by at least <code>sweepTolerance</code>)</li>
+      <li>Price closes <em>back inside</em> the range on the same bar</li>
+    </ol>
+    <pre><code>sweepTolerance = input.float(0.001, "Sweep Tolerance %", step=0.0005)
+
+// Bullish sweep: price dips below swing low, closes back above
+bullishSweep = low[1] &lt; swingLowPrice and close > swingLowPrice
+
+// Bearish sweep: price spikes above swing high, closes back below
+bearishSweep = high[1] > swingHighPrice and close &lt; swingHighPrice</code></pre>
+    <p>The <code>[1]</code> reference is key — we check the previous bar for the sweep, because the current bar is still forming. This prevents repainting.</p>
+    <p>We also want to confirm the swing level was <em>actually the extreme</em> within the lookback period:</p>
+    <pre><code>bullishSweep := bullishSweep and low[1] == swingLowPrice
+bearishSweep := bearishSweep and high[1] == swingHighPrice</code></pre>
+
+    <h2 id="visuals">5. Visual Labels and Alerts</h2>
+    <p>Now we draw labels at the sweep location. Use <code>label.new()</code> and clean up old labels to prevent chart clutter.</p>
+    <pre><code>if bullishSweep
+    label.new(bar_index[1], low[1] * 0.998,
+     "⚡ BUY-SIDE LIQ SWEEP",
+     style=label.style_label_up,
+     color=color.green,
+     textcolor=color.white,
+     size=size.small)
+
+if bearishSweep
+    label.new(bar_index[1], high[1] * 1.002,
+     "⚡ SELL-SIDE LIQ SWEEP",
+     style=label.style_label_down,
+     color=color.red,
+     textcolor=color.white,
+     size=size.small)
+
+// Alert on first detection
+alertcondition(bullishSweep or bearishSweep,
+  title="Liquidity Sweep Detected",
+  message="⚡ Liquidity sweep detected on {{ticker}}")</code></pre>
+
+    <h2 id="optimize">6. Optimization and User Controls</h2>
+    <p>Good indicators let users tune the detection. Add inputs for:</p>
+    <ul>
+      <li><strong>Lookback:</strong> How far back to scan for swing points (50-500 bars)</li>
+      <li><strong>Tolerance:</strong> How far price must break the level (0.05% - 0.5%)</li>
+      <li><strong>Max label age:</strong> Auto-remove labels older than X bars</li>
+      <li><strong>Toggle:</strong> Show/hide sweeps, choose label style</li>
+    </ul>
+    <p>Label cleanup prevents memory issues on long charts:</p>
+    <pre><code>// In barstate.islastconfirmedhistory block:
+if barstate.islast
+    for i = array.size(sweepLabels) - 1 to 0
+        if bar_index - label.get_x(array.get(sweepLabels, i)) > 50
+            label.delete(array.get(sweepLabels, i))
+            array.remove(sweepLabels, i)</code></pre>
+
+    <h2 id="full">7. Complete Code</h2>
+    <p>Here's the full working indicator. Copy-paste into TradingView Pine Editor:</p>
+    <pre><code>//@version=5
+indicator("Liquidity Sweep Detector", overlay=true, max_labels_count=500)
+
+// === USER INPUTS ===
+showSweeps      = input.bool(true, "Show Sweep Labels")
+lookback        = input.int(100,   "Lookback (bars)", minval=30)
+maxLabelAge     = input.int(50,    "Max Label Age", minval=10)
+sweepTolerance  = input.float(0.001, "Tolerance %", step=0.0005)
+
+// === SWING POINT DETECTION ===
+swingLowPrice   = ta.lowest(low, lookback)
+swingHighPrice  = ta.highest(high, lookback)
+
+// === SWEEP DETECTION (bar-close confirmed, no repaint) ===
+bullishSweep = low[1] &lt; swingLowPrice and close > swingLowPrice
+           and low[1] == swingLowPrice
+
+bearishSweep = high[1] > swingHighPrice and close &lt; swingHighPrice
+           and high[1] == swingHighPrice
+
+// === VISUAL LABELS ===
+var label[] sweepLabels = na
+if na(sweepLabels)
+    sweepLabels := array.new&lt;label&gt;()
+
+if showSweeps and bullishSweep
+    lbl = label.new(bar_index[1], low[1] * 0.998,
+     "⚡ BUY-SIDE LIQ SWEEP",
+     style=label.style_label_up,
+     color=color.green,
+     textcolor=color.white,
+     size=size.small)
+    array.push(sweepLabels, lbl)
+
+if showSweeps and bearishSweep
+    lbl = label.new(bar_index[1], high[1] * 1.002,
+     "⚡ SELL-SIDE LIQ SWEEP",
+     style=label.style_label_down,
+     color=color.red,
+     textcolor=color.white,
+     size=size.small)
+    array.push(sweepLabels, lbl)
+
+// === CLEANUP (remove old labels) ===
+if barstate.islast and array.size(sweepLabels) > 0
+    for i = array.size(sweepLabels) - 1 to 0
+        if bar_index - label.get_x(array.get(sweepLabels, i)) > maxLabelAge
+            label.delete(array.get(sweepLabels, i))
+            array.remove(sweepLabels, i)
+
+// === ALERTS ===
+alertcondition(bullishSweep or bearishSweep,
+ title="Liquidity Sweep",
+ message="⚡ {{ticker}} liquidity sweep detected")</code></pre>
+    <p>Paste this into TradingView's Pine Editor, click "Add to Chart", and you'll see green/red labels appear whenever a sweep is detected.</p>
+
+    <div class="cta-box">
+      <p><strong>Want the full package?</strong></p>
+      <p>SMC Pro Pack includes this sweep detector + 3 more indicators (FVG, Order Blocks, Market Structure) in a single Pine Script. All 4 modules, one file, 35 USDC one-time.</p>
+      <a class="btn" href="https://smc-pro-pack.surge.sh">Get SMC Pro Pack →</a>
+    </div>
+
+    <hr />
+    <h2>Related Tutorials</h2>
+    <ul>
+      <li><a href="https://smc-pro-pack.surge.sh">SMC Pro Pack — 4 Institutional Indicators for TradingView</a></li>
+      <li><a href="https://prompt-trader-pack.surge.sh">SMC/ICT Trader's Prompt Pack — 50 Prompts for ChatGPT & Claude</a></li>
+    </ul>
+    <p style="font-size: 0.85rem; color: #64748b; margin-top: 2rem;">Published: June 2026 · Pine Script v5 · TradingView</p>
+  </div>
+</body>
+</html>

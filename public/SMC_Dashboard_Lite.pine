@@ -1,0 +1,78 @@
+//@version=5
+indicator("SMC Dashboard Lite", overlay=true, max_labels_count=200)
+
+// ════════════════════════════════════════════════════════════════
+//  SMC DASHBOARD LITE — Free Smart Money Concepts Toolkit
+//  
+//  A limited preview of the full SMC Pro Pack.
+//  Detects Fair Value Gaps and 1 liquidity level for educational use.
+//  
+//  🔗 Full version (4 modules): smc-pro-pack.surge.sh
+//  💰 35 USDC one-time, forever license
+// ════════════════════════════════════════════════════════════════
+
+// === USER CONTROLS ===
+showFVGs       = input.bool(true, "📊 Show Fair Value Gaps")
+showLiqLevel   = input.bool(true, "⚡ Show Nearest Liquidity")
+fvgMaxAge      = input.int(15, "FVG Max Age (bars)", minval=3)
+lookback       = input.int(75, "Lookback Period", minval=20)
+
+// === MODULE 1: FAIR VALUE GAP MAPPER (LITE) ===
+// Bullish FVG: gap up between 3 candles
+bullishFVG = high[2] < low
+// Bearish FVG: gap down between 3 candles  
+bearishFVG = low[2] > high
+
+if showFVGs and bullishFVG
+    box.new(bar_index[2], low, bar_index[1], max(high[2], low),
+     border_color=color.new(color.blue, 40),
+     bgcolor=color.new(color.blue, 15),
+     extend=extend.right)
+
+if showFVGs and bearishFVG
+    box.new(bar_index[2], min(low[2], high), bar_index[1], high,
+     border_color=color.new(color.orange, 40),
+     bgcolor=color.new(color.orange, 15),
+     extend=extend.right)
+
+// === MODULE 2: NEAREST LIQUIDITY LEVEL (LITE) ===
+if showLiqLevel
+    swingLow  = ta.lowest(low, lookback)
+    swingHigh = ta.highest(high, lookback)
+    
+    // Only show 1 nearest liquidity level
+    distToLow  = close - swingLow
+    distToHigh = swingHigh - close
+    
+    if distToLow < distToHigh
+        line.new(bar_index - lookback, swingLow, bar_index, swingLow,
+         color=color.new(color.green, 50),
+         style=line.style_dashed, width=1,
+         extend=extend.right)
+    else
+        line.new(bar_index - lookback, swingHigh, bar_index, swingHigh,
+         color=color.new(color.red, 50),
+         style=line.style_dashed, width=1,
+         extend=extend.right)
+
+// === INFO PANEL ===
+if barstate.islast
+    panel = "🔷 SMC DASHBOARD LITE\n"
+    panel += "━━━━━━━━━━━━━━━\n"
+    panel += (showFVGs ? "✅" : "⬜") + " FVG Mapper\n"
+    panel += (showLiqLevel ? "✅" : "⬜") + " Liq. Level\n"
+    panel += "━━━━━━━━━━━━━━━\n"
+    panel += "🔗 Full: smc-pro-pack.surge.sh"
+    
+    label.new(bar_index, high * 1.02, panel,
+     style=label.style_label_center,
+     color=color.new(#1e1e2e, 15),
+     textcolor=color.white,
+     size=size.small,
+     textalign=text.align_center)
+
+// ════════════════════════════════════════════════════════════════
+//  This is a free preview script. Full version at smc-pro-pack.surge.sh
+//  Includes: Liquidity Sweep · FVG Mapper · Order Block · Structure
+//  35 USDC — One-time license
+// ════════════════════════════════════════════════════════════════
