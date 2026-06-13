@@ -1,0 +1,17 @@
+{
+  "updatedAt": "2026-06-13T11:41:49.430Z",
+  "account": {
+    "equity": 100000,
+    "buyingPower": 400000,
+    "cash": 100000,
+    "openPL": 0,
+    "openPositions": 0
+  },
+  "performance": {
+    "winRate": 0,
+    "wins": 0,
+    "losses": 0,
+    "totalTrades": 0
+  },
+  "trades": []
+}

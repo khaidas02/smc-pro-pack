@@ -1,32 +1,65 @@
 {
   "run": "ZERO_CAPITAL_BOOTSTRAP",
   "total_budget_usd": 3.57,
-  "phase": "PHASE_2_MARKETING",
+  "phase": "PHASE_2_COMPLETE",
   "spend_log": [
     {
-      "task": "Write SEO-optimized README.md (6.9KB, 0.7K tokens out)",
+      "task": "SEO-optimized GitHub README.md (6.9KB)",
       "est_cost_usd": 0.002
     },
     {
-      "task": "Write fetch_leads.js v2 (Pushshift-based Reddit scraper, 5KB)",
+      "task": "fetch_leads.js v2 (Pushshift Reddit scraper, 5KB)",
       "est_cost_usd": 0.002
     },
     {
-      "task": "Write 3 video scripts (7KB, ~0.8K tokens out)",
+      "task": "3 video scripts (7.1KB — TikTok/Shorts/Reels)",
       "est_cost_usd": 0.002
     },
     {
-      "task": "Live Reddit lead harvesting via web_fetch",
+      "task": "Hero banner image (678KB, 16:9)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "Feature card image (690KB, 4:5)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "CTA square image (540KB, 1:1 Instagram)",
+      "est_cost_usd": 0.002
+    },
+    {
+      "task": "Promo short video (5.7MB, 8s, 9:16)",
+      "est_cost_usd": 0.005
+    },
+    {
+      "task": "Docs site (HTML, SEO-optimized) deployed",
       "est_cost_usd": 0.001
     },
     {
-      "task": "Error recovery: 2 scraper versions, 2 build fixes, search fallback",
+      "task": "2 cron jobs: health check (6h) + budget reminder (8h)",
+      "est_cost_usd": 0.001
+    },
+    {
+      "task": "Live Reddit lead harvesting + bad fixes",
       "est_cost_usd": 0.005
     }
   ],
-  "total_phase2_spend_usd": 0.012,
-  "cumulative_all_phases_spend_usd": 0.029,
-  "remaining_budget_usd": 3.541,
-  "target_product_url": "https://smc-pro-pack.surge.sh",
-  "payout_address": "0x34d647d24a296916bee1253fc03dc2b242eaad6f"
+  "total_phase2_spend_usd": 0.024,
+  "cumulative_spend_phase1_usd": 0.017,
+  "cumulative_spend_phase2_usd": 0.024,
+  "total_all_time_spend_usd": 0.041,
+  "remaining_budget_usd": 3.529,
+  "live_urls": {
+    "storefront": "https://smc-pro-pack.surge.sh",
+    "docs_site": "https://smc-pro-pack-docs.surge.sh"
+  },
+  "cron_jobs": [
+    "Site health check every 6h",
+    "Budget reminder every 8h"
+  ],
+  "promo_assets_generated": 4,
+  "payout_address": "0x34d647d24a296916bee1253fc03dc2b242eaad6f",
+  "payout_currency": "USDC (ERC-20)",
+  "price": "35 USDC one-time",
+  "status": "READY_FOR_REVENUE"
 }

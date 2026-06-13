@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMC Pro Pack — 4 Institutional SMC Indicators for TradingView</title>
+  <meta name="description" content="SMC Pro Pack: 4 Smart Money Concepts indicators for TradingView Pine Script v5. Liquidity Sweep, Fair Value Gap, Order Block, Market Structure Break. 35 USDC one-time." />
+  <meta name="keywords" content="TradingView SMC indicator, ICT fair value gap script, liquidity sweep Pine Script, order block indicator TradingView, smart money concepts trading tool, market structure break indicator, Pine Script v5 trading toolkit" />
+  <meta property="og:title" content="SMC Pro Pack — Institutional-Grade SMC Toolkit" />
+  <meta property="og:description" content="Liquidity Sweep · Fair Value Gap · Order Block · Market Structure — 4 Pine Script v5 indicators. 35 USDC one-time." />
+  <meta property="og:url" content="https://smc-pro-pack-docs.surge.sh" />
+  <meta property="og:type" content="website" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    h1 { font-size: 2.5rem; line-height: 1.2; margin: 2rem 0 0.5rem; background: linear-gradient(135deg, #7c3aed, #00f5d4, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h2 { font-size: 1.5rem; margin: 2rem 0 0.75rem; color: #00f5d4; }
+    h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: #7c3aed; }
+    p, li { color: #94a3b8; margin-bottom: 0.75rem; }
+    a { color: #00f5d4; text-decoration: underline; }
+    a:hover { color: #7c3aed; }
+    .btn { display: inline-block; padding: 0.85rem 2rem; border-radius: 0.75rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; border: none; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, #7c3aed, #00f5d4); color: white; font-size: 1.1rem; }
+    .btn-secondary { background: #1a1a2e; color: #e2e8f0; border: 1px solid #2d2d50; }
+    .btn:hover { opacity: 0.9; }
+    .hero { text-align: center; padding: 3rem 0; }
+    .hero p { font-size: 1.1rem; max-width: 600px; margin: 1rem auto; }
+    .price-box { display: inline-block; background: #1a1a2e; border: 1px solid #2d2d50; border-radius: 1rem; padding: 2rem 3rem; margin: 2rem 0; text-align: center; }
+    .price-box .price { font-size: 2.5rem; font-weight: 700; font-family: 'Courier New', monospace; background: linear-gradient(135deg, #00f5d4, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .price-box .label { font-size: 0.85rem; color: #64748b; margin-top: 0.25rem; }
+    .price-box .btn { margin-top: 1rem; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .feature-card { background: #1a1a2e; border: 1px solid #2d2d50; border-radius: 0.75rem; padding: 1.25rem; transition: border-color 0.3s; }
+    .feature-card:hover { border-color: #7c3aed; }
+    .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .feature-card h4 { margin-bottom: 0.25rem; }
+    .feature-card p { font-size: 0.85rem; margin: 0; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+    .why-card { background: #1a1a2e; border-radius: 0.75rem; padding: 1rem; position: relative; }
+    .why-card::before { content: ''; position: absolute; inset: -1px; border-radius: 13px; padding: 1px; background: linear-gradient(135deg, #7c3aed, #00f5d4, #ec4899); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .why-card h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .why-card p { font-size: 0.8rem; margin: 0; }
+    hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+    .footer { text-align: center; font-size: 0.85rem; color: #64748b; padding-top: 2rem; border-top: 1px solid #1a1a2e; margin-top: 3rem; }
+    code { background: #1a1a2e; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85rem; color: #00f5d4; }
+    .address { font-family: monospace; font-size: 0.85rem; background: #1a1a2e; padding: 0.5rem 1rem; border-radius: 0.5rem; display: inline-block; word-break: break-all; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; background: rgba(124,58,237,0.2); color: #7c3aed; border: 1px solid rgba(124,58,237,0.3); }
+    @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } .why-grid { grid-template-columns: 1fr 1fr; } h1 { font-size: 1.75rem; } }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    th, td { padding: 0.5rem 0.75rem; border: 1px solid #2d2d50; text-align: left; }
+    th { background: #1a1a2e; color: #00f5d4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>SMC Pro Pack</h1>
+      <p>4 Smart Money Concepts indicators for TradingView — built in <strong>Pine Script v5</strong>.<br/>Liquidity Sweep · Fair Value Gap · Order Block · Market Structure Break.</p>
+      <div class="price-box">
+        <div class="price">35 USDC</div>
+        <div class="label">One-time · Forever license · No subscriptions</div>
+        <br/>
+        <a href="https://smc-pro-pack.surge.sh" class="btn btn-primary">🔓 Buy Now — Unlock & Download</a>
+      </div>
+    </div>
+
+    <h2>⚡ What Is This?</h2>
+    <p><strong>SMC Pro Pack</strong> is a bundle of 4 institutional-grade Smart Money Concepts indicators written in <strong>Pine Script v5</strong> for TradingView. Designed for ICT, SMC, and price-action traders who want clean, real-time visual cues without the lag or repainting of most free scripts.</p>
+    <p><strong>One-time payment of 35 USDC. No subscriptions. No hidden fees. Download immediately after payment.</strong></p>
+
+    <hr/>
+
+    <h2>🧩 The 4 Modules</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h4>Liquidity Sweep Detector</h4>
+        <p>Detects buy/sell-side liquidity grabs. Flags when price sweeps below swing lows or above swing highs and reverses — in real time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h4>Fair Value Gap Mapper</h4>
+        <p>Plots 3-candle imbalance zones with time-based decay counters. Auto-cleans stale gaps. ~70% fill probability.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧱</div>
+        <h4>Order Block Identifier</h4>
+        <p>Marks the last candle before a strong directional move. Bullish/Bearish OBs act as support/resistance that price respects for weeks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h4>Market Structure Break</h4>
+        <p>Tracks HH/HL/LH/LL swing structure. Flags MSB (Market Structure Break) the moment it happens — earliest trend reversal signal.</p>
+      </div>
+    </div>
+
+    <h2>🎛️ User Controls</h2>
+    <table>
+      <thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>showLiqSweeps</td><td>toggle</td><td>ON</td><td>Show/hide sweep labels</td></tr>
+        <tr><td>showFVGs</td><td>toggle</td><td>ON</td><td>Show/hide FVG zones</td></tr>
+        <tr><td>showOrderBlocks</td><td>toggle</td><td>ON</td><td>Show/hide OB markers</td></tr>
+        <tr><td>showStructure</td><td>toggle</td><td>ON</td><td>Show/hide MSB lines</td></tr>
+        <tr><td>lookback</td><td>integer</td><td>100</td><td>Sweep/OB detection range</td></tr>
+        <tr><td>fvgMaxAge</td><td>integer</td><td>20</td><td>Max bars to keep FVGs visible</td></tr>
+      </tbody>
+    </table>
+
+    <hr/>
+
+    <h2>💰 Pricing</h2>
+    <p>Price: <strong>35 USDC</strong> (USDC ERC-20 on Ethereum)</p>
+    <p>How to buy:</p>
+    <ol>
+      <li>Visit <a href="https://smc-pro-pack.surge.sh">smc-pro-pack.surge.sh</a></li>
+      <li>Connect your MetaMask / Coinbase Wallet / WalletConnect</li>
+      <li>Send <strong>35 USDC</strong> to the payout wallet</li>
+      <li>Code auto-downloads immediately after on-chain confirmation</li>
+    </ol>
+    <p>Payout wallet: <span class="address">0x34d647d24a296916bee1253fc03dc2b242eaad6f</span></p>
+    <p><a href="https://smc-pro-pack.surge.sh" class="btn btn-primary" style="margin-top:0.5rem;">🔓 Buy Now — 35 USDC</a></p>
+
+    <hr/>
+
+    <h2>🔧 Installation</h2>
+    <ol>
+      <li>Buy at <a href="https://smc-pro-pack.surge.sh">smc-pro-pack.surge.sh</a></li>
+      <li>Download the <code>.pine</code> file (auto-delivered after payment)</li>
+      <li>Open TradingView → Pine Editor (bottom panel)</li>
+      <li>Click <strong>New → Open → Upload .pine file</strong></li>
+      <li>Select the downloaded <code>SMC_Pro_Pack.pine</code></li>
+      <li>Click <strong>Add to Chart</strong> — done</li>
+    </ol>
+
+    <hr/>
+
+    <h2>❓ FAQ</h2>
+    <p><strong>Q: Does this repaint?</strong><br/>A: No. All detection is bar-close based.</p>
+    <p><strong>Q: Works on crypto, forex, stocks?</strong><br/>A: Yes. Works on any timeframe and any instrument.</p>
+    <p><strong>Q: Can I customize colors?</strong><br/>A: Code is unobfuscated — modify freely.</p>
+    <p><strong>Q: Refund policy?</strong><br/>A: Digital goods are final. 35 USDC is less than most indicator rentals for a month.</p>
+
+    <div class="footer">
+      <p>SMC Pro Pack v1.0 — Built for TradingView Pine Script v5</p>
+      <p>One-time purchase. No subscriptions. 
+        <a href="https://etherscan.io/address/0x34d647d24a296916bee1253fc03dc2b242eaad6f" target="_blank">Verify payout wallet on Etherscan</a>
+      </p>
+      <p style="margin-top:0.5rem;font-size:0.75rem;">
+        <a href="https://smc-pro-pack.surge.sh">Storefront</a> · 
+        <a href="https://smc-pro-pack-docs.surge.sh">Docs</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

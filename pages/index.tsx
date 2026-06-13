@@ -11,6 +11,7 @@ import {
   WHY_SMC,
 } from '../lib/constants'
 import { downloadAsset } from '../lib/asset'
+import LivePerformanceDashboard from '../components/LivePerformanceDashboard'
 
 type PaymentStatus = 'idle' | 'confirming' | 'verifying' | 'paid' | 'error'
 
@@ -135,6 +136,17 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== LIVE PERFORMANCE DASHBOARD ===== */}
+      <section className="py-20 px-6 section-alt" id="performance">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-2">Live Performance</h2>
+          <p className="text-secondary text-center mb-10 max-w-xl mx-auto">
+            Real-time equity, win rate, and trade ledger pulled directly from our Alpaca paper trading account.
+          </p>
+          <LivePerformanceDashboard />
         </div>
       </section>
 
