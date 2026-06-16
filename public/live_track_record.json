@@ -1,53 +1,98 @@
 {
-  "updatedAt": "2026-06-16T14:01:59.040Z",
+  "updatedAt": "2026-06-16T15:01:33.744Z",
   "account": {
-    "equity": 100009.92,
-    "buyingPower": 366099.83,
-    "cash": 71726.71,
-    "openPL": 7.89,
-    "openPositions": 6
+    "equity": 99917.07,
+    "buyingPower": 365311.15,
+    "cash": 71286.13,
+    "openPL": -57.04,
+    "openPositions": 9
   },
   "performance": {
-    "winRate": 33.3,
-    "wins": 2,
-    "losses": 4,
-    "totalTrades": 6
+    "winRate": 44.4,
+    "wins": 4,
+    "losses": 5,
+    "totalTrades": 9
   },
   "trades": [
     {
-      "symbol": "HYG",
+      "symbol": "XLK",
       "side": "buy",
       "type": "market",
-      "qty": 12,
-      "price": 80.1,
-      "filled_at": "2026-06-16T14:01:28.589466Z",
+      "qty": 2,
+      "price": 188.68,
+      "filled_at": "2026-06-16T14:58:59.921845Z",
       "status": "filled"
     },
     {
-      "symbol": "HYG",
+      "symbol": "XLK",
       "side": "sell",
       "type": "market",
-      "qty": 12,
-      "price": 80.09,
-      "filled_at": "2026-06-16T14:00:52.433771Z",
+      "qty": 2,
+      "price": 188.895,
+      "filled_at": "2026-06-16T14:58:21.611955Z",
       "status": "filled"
     },
     {
       "symbol": "XLV",
-      "side": "sell",
+      "side": "buy",
       "type": "market",
-      "qty": 6,
-      "price": 152.17,
-      "filled_at": "2026-06-16T14:00:52.674763Z",
+      "qty": 3,
+      "price": 152.52,
+      "filled_at": "2026-06-16T14:49:39.670204Z",
       "status": "filled"
     },
     {
-      "symbol": "DIA",
+      "symbol": "EEM",
+      "side": "buy",
+      "type": "market",
+      "qty": 7,
+      "price": 69.04,
+      "filled_at": "2026-06-16T14:49:37.11874Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "SLV",
+      "side": "buy",
+      "type": "market",
+      "qty": 8,
+      "price": 63.11125,
+      "filled_at": "2026-06-16T14:49:38.328721Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLK",
+      "side": "buy",
+      "type": "market",
+      "qty": 2,
+      "price": 189.4,
+      "filled_at": "2026-06-16T14:49:37.192108Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "EEM",
       "side": "sell",
       "type": "market",
-      "qty": 1,
-      "price": 520.93,
-      "filled_at": "2026-06-16T14:00:50.385746Z",
+      "qty": 14,
+      "price": 68.89,
+      "filled_at": "2026-06-16T14:31:35.608446Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLK",
+      "side": "sell",
+      "type": "market",
+      "qty": 5,
+      "price": 189.17,
+      "filled_at": "2026-06-16T14:31:36.511953Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "SLV",
+      "side": "sell",
+      "type": "market",
+      "qty": 15,
+      "price": 62.890666,
+      "filled_at": "2026-06-16T14:31:01.421262Z",
       "status": "filled"
     },
     {
@@ -55,53 +100,8 @@
       "side": "buy",
       "type": "market",
       "qty": 5,
-      "price": 191.53,
-      "filled_at": "2026-06-16T13:59:37.219886Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "EEM",
-      "side": "buy",
-      "type": "market",
-      "qty": 14,
-      "price": 69.59,
-      "filled_at": "2026-06-16T13:58:59.393762Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "DIA",
-      "side": "buy",
-      "type": "market",
-      "qty": 1,
-      "price": 520.18,
-      "filled_at": "2026-06-16T13:58:58.691112Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLV",
-      "side": "buy",
-      "type": "market",
-      "qty": 6,
-      "price": 151.936667,
-      "filled_at": "2026-06-16T13:58:24.253931Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "HYG",
-      "side": "buy",
-      "type": "market",
-      "qty": 12,
-      "price": 80.1,
-      "filled_at": "2026-06-16T13:58:24.500636Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "TLT",
-      "side": "buy",
-      "type": "market",
-      "qty": 5,
-      "price": 85.95,
-      "filled_at": "2026-06-16T13:31:02.643821Z",
+      "price": 189.76,
+      "filled_at": "2026-06-16T14:29:45.901539Z",
       "status": "filled"
     }
   ]
