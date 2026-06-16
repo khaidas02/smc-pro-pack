@@ -1,80 +1,26 @@
 {
-  "updatedAt": "2026-06-16T16:02:20.143Z",
+  "updatedAt": "2026-06-16T17:01:29.667Z",
   "account": {
-    "equity": 99914.9,
-    "buyingPower": 394836.65,
-    "cash": 95895.78,
-    "openPL": 6.01,
-    "openPositions": 9
+    "equity": 99913.7,
+    "buyingPower": 395633.78,
+    "cash": 96562.86,
+    "openPL": -0.65,
+    "openPositions": 7
   },
   "performance": {
-    "winRate": 88.9,
-    "wins": 8,
-    "losses": 1,
-    "totalTrades": 9
+    "winRate": 28.6,
+    "wins": 2,
+    "losses": 5,
+    "totalTrades": 7
   },
   "trades": [
     {
-      "symbol": "XLV",
+      "symbol": "DIA",
       "side": "buy",
       "type": "market",
-      "qty": 3,
-      "price": 153.103333,
-      "filled_at": "2026-06-16T15:47:31.563806Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLV",
-      "side": "sell",
-      "type": "market",
-      "qty": 3,
-      "price": 153.186667,
-      "filled_at": "2026-06-16T15:46:53.309166Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLV",
-      "side": "buy",
-      "type": "market",
-      "qty": 3,
-      "price": 152.763333,
-      "filled_at": "2026-06-16T15:29:56.627202Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "HYG",
-      "side": "buy",
-      "type": "market",
-      "qty": 7,
-      "price": 80.04,
-      "filled_at": "2026-06-16T15:27:46.035671Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLK",
-      "side": "buy",
-      "type": "market",
-      "qty": 3,
-      "price": 188.34,
-      "filled_at": "2026-06-16T15:25:39.522757Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "IBIT",
-      "side": "buy",
-      "type": "market",
-      "qty": 3,
-      "price": 37.25,
-      "filled_at": "2026-06-16T15:25:37.993733Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "BITO",
-      "side": "buy",
-      "type": "market",
-      "qty": 15,
-      "price": 8.95,
-      "filled_at": "2026-06-16T15:25:39.323939Z",
+      "qty": 1,
+      "price": 523.05,
+      "filled_at": "2026-06-16T16:54:23.239803Z",
       "status": "filled"
     },
     {
@@ -82,17 +28,17 @@
       "side": "buy",
       "type": "market",
       "qty": 8,
-      "price": 68.92,
-      "filled_at": "2026-06-16T15:25:37.690364Z",
+      "price": 68.91,
+      "filled_at": "2026-06-16T16:54:23.361326Z",
       "status": "filled"
     },
     {
-      "symbol": "DIA",
+      "symbol": "XLV",
       "side": "buy",
       "type": "market",
-      "qty": 1,
-      "price": 521.86,
-      "filled_at": "2026-06-16T15:25:37.420298Z",
+      "qty": 3,
+      "price": 153.24,
+      "filled_at": "2026-06-16T16:54:22.58073Z",
       "status": "filled"
     },
     {
@@ -100,8 +46,62 @@
       "side": "buy",
       "type": "market",
       "qty": 9,
-      "price": 63.15,
-      "filled_at": "2026-06-16T15:25:37.739265Z",
+      "price": 63.47,
+      "filled_at": "2026-06-16T16:54:25.005439Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "HYG",
+      "side": "buy",
+      "type": "market",
+      "qty": 7,
+      "price": 80.08,
+      "filled_at": "2026-06-16T16:54:23.378875Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "BITO",
+      "side": "buy",
+      "type": "market",
+      "qty": 16,
+      "price": 8.94,
+      "filled_at": "2026-06-16T16:54:24.103378Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLI",
+      "side": "buy",
+      "type": "market",
+      "qty": 3,
+      "price": 180.87,
+      "filled_at": "2026-06-16T16:54:21.891342Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLK",
+      "side": "sell",
+      "type": "market",
+      "qty": 3,
+      "price": 188.4,
+      "filled_at": "2026-06-16T16:52:42.375025Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLI",
+      "side": "sell",
+      "type": "market",
+      "qty": 3,
+      "price": 180.756667,
+      "filled_at": "2026-06-16T16:52:42.757059Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "SLV",
+      "side": "sell",
+      "type": "market",
+      "qty": 9,
+      "price": 63.46,
+      "filled_at": "2026-06-16T16:52:42.357092Z",
       "status": "filled"
     }
   ]
