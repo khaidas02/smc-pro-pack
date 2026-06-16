@@ -1,35 +1,44 @@
 {
-  "updatedAt": "2026-06-16T19:02:16.214Z",
+  "updatedAt": "2026-06-16T20:02:16.156Z",
   "account": {
-    "equity": 99907.91,
-    "buyingPower": 395933.79,
-    "cash": 97210.46,
-    "openPL": -2.67,
-    "openPositions": 4
+    "equity": 99903.94,
+    "buyingPower": 397404,
+    "cash": 98060.81,
+    "openPL": -2.73,
+    "openPositions": 5
   },
   "performance": {
-    "winRate": 25,
-    "wins": 1,
-    "losses": 3,
-    "totalTrades": 4
+    "winRate": 0,
+    "wins": 0,
+    "losses": 5,
+    "totalTrades": 5
   },
   "trades": [
     {
-      "symbol": "XLV",
+      "symbol": "SLV",
       "side": "sell",
       "type": "market",
-      "qty": 3,
-      "price": 152.73,
-      "filled_at": "2026-06-16T18:59:56.13849Z",
+      "qty": 9,
+      "price": 63.37,
+      "filled_at": "2026-06-16T19:56:56.823047Z",
       "status": "filled"
     },
     {
-      "symbol": "EEM",
-      "side": "sell",
+      "symbol": "HYG",
+      "side": "buy",
       "type": "market",
-      "qty": 8,
-      "price": 68.76,
-      "filled_at": "2026-06-16T18:59:54.278448Z",
+      "qty": 6,
+      "price": 80.04,
+      "filled_at": "2026-06-16T19:53:35.065315Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLK",
+      "side": "buy",
+      "type": "market",
+      "qty": 3,
+      "price": 187.146667,
+      "filled_at": "2026-06-16T19:51:40.423414Z",
       "status": "filled"
     },
     {
@@ -37,8 +46,17 @@
       "side": "sell",
       "type": "market",
       "qty": 3,
-      "price": 180.53,
-      "filled_at": "2026-06-16T18:59:50.988328Z",
+      "price": 180.27,
+      "filled_at": "2026-06-16T19:51:39.251834Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLV",
+      "side": "sell",
+      "type": "market",
+      "qty": 3,
+      "price": 152.9,
+      "filled_at": "2026-06-16T19:51:38.599653Z",
       "status": "filled"
     },
     {
@@ -46,53 +64,17 @@
       "side": "sell",
       "type": "market",
       "qty": 1,
-      "price": 522.06,
-      "filled_at": "2026-06-16T18:59:45.401649Z",
+      "price": 521.91,
+      "filled_at": "2026-06-16T19:51:38.256766Z",
       "status": "filled"
     },
     {
-      "symbol": "BITO",
+      "symbol": "HYG",
       "side": "sell",
       "type": "market",
-      "qty": 15,
-      "price": 8.96,
-      "filled_at": "2026-06-16T18:22:52.729237Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "BITO",
-      "side": "sell",
-      "type": "market",
-      "qty": 15,
-      "price": 8.96,
-      "filled_at": "2026-06-16T18:22:51.481973Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLK",
-      "side": "buy",
-      "type": "market",
-      "qty": 3,
-      "price": 188.08,
-      "filled_at": "2026-06-16T18:18:06.44979Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLK",
-      "side": "buy",
-      "type": "market",
-      "qty": 3,
-      "price": 188.073333,
-      "filled_at": "2026-06-16T18:18:06.413267Z",
-      "status": "filled"
-    },
-    {
-      "symbol": "XLK",
-      "side": "sell",
-      "type": "market",
-      "qty": 3,
-      "price": 187.946667,
-      "filled_at": "2026-06-16T18:17:29.647605Z",
+      "qty": 7,
+      "price": 80.03,
+      "filled_at": "2026-06-16T19:51:38.127545Z",
       "status": "filled"
     },
     {
@@ -100,8 +82,26 @@
       "side": "buy",
       "type": "market",
       "qty": 9,
-      "price": 63.64,
-      "filled_at": "2026-06-16T18:15:43.597067Z",
+      "price": 63.5,
+      "filled_at": "2026-06-16T19:47:59.133299Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "EEM",
+      "side": "buy",
+      "type": "market",
+      "qty": 8,
+      "price": 68.71,
+      "filled_at": "2026-06-16T19:46:56.701931Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "SLV",
+      "side": "sell",
+      "type": "market",
+      "qty": 9,
+      "price": 63.51,
+      "filled_at": "2026-06-16T19:46:54.812261Z",
       "status": "filled"
     }
   ]
