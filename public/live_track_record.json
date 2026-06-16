@@ -1,108 +1,260 @@
 {
-  "updatedAt": "2026-06-16T22:02:07.341Z",
+  "updatedAt": "2026-06-16T23:15:19Z",
   "account": {
-    "equity": 99905.49,
-    "buyingPower": 397408.34,
+    "equity": 99907.24,
+    "buyingPower": 397413.24,
     "cash": 98060.81,
-    "openPL": -1.18,
+    "openPL": 0.57,
     "openPositions": 5
   },
   "performance": {
-    "winRate": 50,
-    "wins": 2,
-    "losses": 2,
-    "totalTrades": 4
+    "winRate": 44.6,
+    "wins": 238,
+    "losses": 220,
+    "totalTrades": 534
   },
   "trades": [
     {
+      "id": "43d5249e-3152-4413-ad86-beeec491ab38",
       "symbol": "SLV",
       "side": "sell",
-      "type": "market",
-      "qty": 9,
+      "qty": 9.0,
       "price": 63.37,
-      "filled_at": "2026-06-16T19:56:56.823047Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:56:54.996354+00:00",
+      "filled": "2026-06-16 19:56:56.823047+00:00"
     },
     {
+      "id": "ddffa32e-0269-48a9-b1fd-7747e11910c8",
       "symbol": "HYG",
       "side": "buy",
-      "type": "market",
-      "qty": 6,
+      "qty": 6.0,
       "price": 80.04,
-      "filled_at": "2026-06-16T19:53:35.065315Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:53:34.681937+00:00",
+      "filled": "2026-06-16 19:53:35.065315+00:00"
     },
     {
+      "id": "a91fbc84-1160-4031-adf8-dce3f8a4e85a",
       "symbol": "XLK",
       "side": "buy",
-      "type": "market",
-      "qty": 3,
+      "qty": 3.0,
       "price": 187.146667,
-      "filled_at": "2026-06-16T19:51:40.423414Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:51:38.530773+00:00",
+      "filled": "2026-06-16 19:51:40.423414+00:00"
     },
     {
+      "id": "29db5745-06b5-4933-b6d8-bba2b169d0de",
       "symbol": "XLI",
       "side": "sell",
-      "type": "market",
-      "qty": 3,
+      "qty": 3.0,
       "price": 180.27,
-      "filled_at": "2026-06-16T19:51:39.251834Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:51:37.989812+00:00",
+      "filled": "2026-06-16 19:51:39.251834+00:00"
     },
     {
+      "id": "2227ee5b-17b7-48dd-b509-a3f3f760d317",
       "symbol": "XLV",
       "side": "sell",
-      "type": "market",
-      "qty": 3,
+      "qty": 3.0,
       "price": 152.9,
-      "filled_at": "2026-06-16T19:51:38.599653Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:51:37.714555+00:00",
+      "filled": "2026-06-16 19:51:38.599653+00:00"
     },
     {
+      "id": "5671e364-db67-4979-b90f-04fec1df9b40",
       "symbol": "DIA",
       "side": "sell",
-      "type": "market",
-      "qty": 1,
+      "qty": 1.0,
       "price": 521.91,
-      "filled_at": "2026-06-16T19:51:38.256766Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:51:37.342204+00:00",
+      "filled": "2026-06-16 19:51:38.256766+00:00"
     },
     {
+      "id": "38a4b932-65f6-42de-9289-39f74ba9707b",
       "symbol": "HYG",
       "side": "sell",
-      "type": "market",
-      "qty": 7,
+      "qty": 7.0,
       "price": 80.03,
-      "filled_at": "2026-06-16T19:51:38.127545Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:51:37.086481+00:00",
+      "filled": "2026-06-16 19:51:38.127545+00:00"
     },
     {
+      "id": "91900e65-1799-4f2d-9c0e-486beea3ef2d",
       "symbol": "SLV",
       "side": "buy",
-      "type": "market",
-      "qty": 9,
+      "qty": 9.0,
       "price": 63.5,
-      "filled_at": "2026-06-16T19:47:59.133299Z",
-      "status": "filled"
+      "status": "filled",
+      "created": "2026-06-16 19:47:58.754529+00:00",
+      "filled": "2026-06-16 19:47:59.133299+00:00"
+    },
+    {
+      "id": "8624b033-3e96-4c1d-959c-ea6aeab40184",
+      "symbol": "EEM",
+      "side": "buy",
+      "qty": 8.0,
+      "price": 68.71,
+      "status": "filled",
+      "created": "2026-06-16 19:46:54.650735+00:00",
+      "filled": "2026-06-16 19:46:56.701931+00:00"
+    },
+    {
+      "id": "147cfeb8-38e4-4743-af99-0c769722beb7",
+      "symbol": "SLV",
+      "side": "sell",
+      "qty": 9.0,
+      "price": 63.51,
+      "status": "filled",
+      "created": "2026-06-16 19:46:53.629441+00:00",
+      "filled": "2026-06-16 19:46:54.812261+00:00"
+    },
+    {
+      "id": "d5cb8577-e5fc-43d8-8dd1-b2a9907dcb8c",
+      "symbol": "EEM",
+      "side": "sell",
+      "qty": 8.0,
+      "price": 68.73,
+      "status": "filled",
+      "created": "2026-06-16 19:45:15.251127+00:00",
+      "filled": "2026-06-16 19:45:17.981234+00:00"
+    },
+    {
+      "id": "92a2548d-a78c-4028-9525-760a4c152581",
+      "symbol": "SLV",
+      "side": "buy",
+      "qty": 9.0,
+      "price": 63.5,
+      "status": "filled",
+      "created": "2026-06-16 19:42:49.929301+00:00",
+      "filled": "2026-06-16 19:42:51.856851+00:00"
+    },
+    {
+      "id": "6a410ae5-67d6-45df-94a1-c2562750a255",
+      "symbol": "DIA",
+      "side": "buy",
+      "qty": 1.0,
+      "price": 521.57,
+      "status": "filled",
+      "created": "2026-06-16 19:42:49.610958+00:00",
+      "filled": "2026-06-16 19:42:50.477874+00:00"
+    },
+    {
+      "id": "ef10c782-9c12-48d3-a1a0-3e807eab2382",
+      "symbol": "HYG",
+      "side": "buy",
+      "qty": 7.0,
+      "price": 80.04,
+      "status": "filled",
+      "created": "2026-06-16 19:42:49.130988+00:00",
+      "filled": "2026-06-16 19:42:51.116924+00:00"
+    },
+    {
+      "id": "8e4973e5-ac04-4a3f-886c-8a09f0cf44f4",
+      "symbol": "EEM",
+      "side": "buy",
+      "qty": 8.0,
+      "price": 68.68,
+      "status": "filled",
+      "created": "2026-06-16 19:42:48.779205+00:00",
+      "filled": "2026-06-16 19:42:50.222502+00:00"
+    },
+    {
+      "id": "1e0b110a-5bbc-4d79-9787-2dd1a7ed5db3",
+      "symbol": "XLV",
+      "side": "buy",
+      "qty": 3.0,
+      "price": 152.72,
+      "status": "filled",
+      "created": "2026-06-16 19:36:02.369222+00:00",
+      "filled": "2026-06-16 19:36:04.136171+00:00"
+    },
+    {
+      "id": "4021f326-cd5d-4244-b3f9-d03aab019c95",
+      "symbol": "XLI",
+      "side": "buy",
+      "qty": 3.0,
+      "price": 180.336667,
+      "status": "filled",
+      "created": "2026-06-16 19:36:01.408558+00:00",
+      "filled": "2026-06-16 19:36:04.086297+00:00"
+    },
+    {
+      "id": "af7c372c-2d7d-4609-ac11-dd36089eef5d",
+      "symbol": "BITO",
+      "side": "buy",
+      "qty": 16.0,
+      "price": 8.936875,
+      "status": "filled",
+      "created": "2026-06-16 19:36:00.273695+00:00",
+      "filled": "2026-06-16 19:36:03.749141+00:00"
+    },
+    {
+      "id": "46206ed2-0262-43e2-91f4-4ff458f26036",
+      "symbol": "IBIT",
+      "side": "buy",
+      "qty": 3.0,
+      "price": 37.17,
+      "status": "filled",
+      "created": "2026-06-16 19:35:59.051645+00:00",
+      "filled": "2026-06-16 19:35:59.420326+00:00"
+    },
+    {
+      "id": "c6d92c7c-4df2-4865-b611-88952b669825",
+      "symbol": "XLK",
+      "side": "sell",
+      "qty": 6.0,
+      "price": 187.61,
+      "status": "filled",
+      "created": "2026-06-16 19:24:29.075374+00:00",
+      "filled": "2026-06-16 19:24:29.616218+00:00"
+    }
+  ],
+  "positions": [
+    {
+      "symbol": "BITO",
+      "qty": 16.0,
+      "avgEntry": 8.936875,
+      "currentPrice": 8.93,
+      "pl": -0.11,
+      "plPercent": -0.08
     },
     {
       "symbol": "EEM",
-      "side": "buy",
-      "type": "market",
-      "qty": 8,
-      "price": 68.71,
-      "filled_at": "2026-06-16T19:46:56.701931Z",
-      "status": "filled"
+      "qty": 8.0,
+      "avgEntry": 68.71,
+      "currentPrice": 68.73,
+      "pl": 0.16,
+      "plPercent": 0.03
     },
     {
-      "symbol": "SLV",
-      "side": "sell",
-      "type": "market",
-      "qty": 9,
-      "price": 63.51,
-      "filled_at": "2026-06-16T19:46:54.812261Z",
-      "status": "filled"
+      "symbol": "HYG",
+      "qty": 6.0,
+      "avgEntry": 80.04,
+      "currentPrice": 80.03,
+      "pl": -0.06,
+      "plPercent": -0.01
+    },
+    {
+      "symbol": "IBIT",
+      "qty": 3.0,
+      "avgEntry": 37.17,
+      "currentPrice": 37.2193,
+      "pl": 0.15,
+      "plPercent": 0.13
+    },
+    {
+      "symbol": "XLK",
+      "qty": 3.0,
+      "avgEntry": 187.146667,
+      "currentPrice": 187.29,
+      "pl": 0.43,
+      "plPercent": 0.08
     }
   ]
 }
