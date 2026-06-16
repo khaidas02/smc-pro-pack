@@ -1,17 +1,108 @@
 {
-  "updatedAt": "2026-06-16T13:01:11.188Z",
+  "updatedAt": "2026-06-16T14:01:59.040Z",
   "account": {
-    "equity": 100000,
-    "buyingPower": 400000,
-    "cash": 100000,
-    "openPL": 0,
-    "openPositions": 0
+    "equity": 100009.92,
+    "buyingPower": 366099.83,
+    "cash": 71726.71,
+    "openPL": 7.89,
+    "openPositions": 6
   },
   "performance": {
-    "winRate": 0,
-    "wins": 0,
-    "losses": 0,
-    "totalTrades": 0
+    "winRate": 33.3,
+    "wins": 2,
+    "losses": 4,
+    "totalTrades": 6
   },
-  "trades": []
+  "trades": [
+    {
+      "symbol": "HYG",
+      "side": "buy",
+      "type": "market",
+      "qty": 12,
+      "price": 80.1,
+      "filled_at": "2026-06-16T14:01:28.589466Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "HYG",
+      "side": "sell",
+      "type": "market",
+      "qty": 12,
+      "price": 80.09,
+      "filled_at": "2026-06-16T14:00:52.433771Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLV",
+      "side": "sell",
+      "type": "market",
+      "qty": 6,
+      "price": 152.17,
+      "filled_at": "2026-06-16T14:00:52.674763Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "DIA",
+      "side": "sell",
+      "type": "market",
+      "qty": 1,
+      "price": 520.93,
+      "filled_at": "2026-06-16T14:00:50.385746Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLK",
+      "side": "buy",
+      "type": "market",
+      "qty": 5,
+      "price": 191.53,
+      "filled_at": "2026-06-16T13:59:37.219886Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "EEM",
+      "side": "buy",
+      "type": "market",
+      "qty": 14,
+      "price": 69.59,
+      "filled_at": "2026-06-16T13:58:59.393762Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "DIA",
+      "side": "buy",
+      "type": "market",
+      "qty": 1,
+      "price": 520.18,
+      "filled_at": "2026-06-16T13:58:58.691112Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "XLV",
+      "side": "buy",
+      "type": "market",
+      "qty": 6,
+      "price": 151.936667,
+      "filled_at": "2026-06-16T13:58:24.253931Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "HYG",
+      "side": "buy",
+      "type": "market",
+      "qty": 12,
+      "price": 80.1,
+      "filled_at": "2026-06-16T13:58:24.500636Z",
+      "status": "filled"
+    },
+    {
+      "symbol": "TLT",
+      "side": "buy",
+      "type": "market",
+      "qty": 5,
+      "price": 85.95,
+      "filled_at": "2026-06-16T13:31:02.643821Z",
+      "status": "filled"
+    }
+  ]
 }
