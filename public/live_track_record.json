@@ -1,17 +1,17 @@
 {
-  "updatedAt": "2026-06-16T21:01:53.126Z",
+  "updatedAt": "2026-06-16T22:02:07.341Z",
   "account": {
-    "equity": 99905.41,
-    "buyingPower": 397408.12,
+    "equity": 99905.49,
+    "buyingPower": 397408.34,
     "cash": 98060.81,
-    "openPL": -1.26,
+    "openPL": -1.18,
     "openPositions": 5
   },
   "performance": {
-    "winRate": 40,
+    "winRate": 50,
     "wins": 2,
-    "losses": 3,
-    "totalTrades": 5
+    "losses": 2,
+    "totalTrades": 4
   },
   "trades": [
     {
