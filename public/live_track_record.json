@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-06-17T03:01:15.567Z",
+  "updatedAt": "2026-06-17T04:01:38.384Z",
   "account": {
-    "equity": 99906.81,
-    "buyingPower": 397412.04,
+    "equity": 99909.87,
+    "buyingPower": 397420.61,
     "cash": 98060.81,
     "openPL": null,
     "openPositions": 5
@@ -244,17 +244,17 @@
       "symbol": "IBIT",
       "qty": 3,
       "avgEntry": 37.17,
-      "currentPrice": 37.31,
-      "pl": 0.42,
-      "plPercent": 0.377
+      "currentPrice": 37.25,
+      "pl": 0.24,
+      "plPercent": 0.215
     },
     {
       "symbol": "XLK",
       "qty": 3,
       "avgEntry": 187.146667,
-      "currentPrice": 187.19,
-      "pl": 0.129999,
-      "plPercent": 0.023
+      "currentPrice": 188.27,
+      "pl": 3.369999,
+      "plPercent": 0.6
     }
   ]
 }
