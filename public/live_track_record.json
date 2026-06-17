@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-06-17T05:01:40.231Z",
+  "updatedAt": "2026-06-17T06:04:47.153Z",
   "account": {
-    "equity": 99909.85,
-    "buyingPower": 397420.55,
+    "equity": 99910.56,
+    "buyingPower": 397422.54,
     "cash": 98060.81,
     "openPL": null,
     "openPositions": 5
@@ -220,9 +220,9 @@
       "symbol": "BITO",
       "qty": 16,
       "avgEntry": 8.936875,
-      "currentPrice": 8.96,
-      "pl": 0.37,
-      "plPercent": 0.259
+      "currentPrice": 8.95,
+      "pl": 0.21,
+      "plPercent": 0.147
     },
     {
       "symbol": "EEM",
@@ -244,17 +244,17 @@
       "symbol": "IBIT",
       "qty": 3,
       "avgEntry": 37.17,
-      "currentPrice": 37.33,
-      "pl": 0.48,
-      "plPercent": 0.43
+      "currentPrice": 37.25,
+      "pl": 0.24,
+      "plPercent": 0.215
     },
     {
       "symbol": "XLK",
       "qty": 3,
       "avgEntry": 187.146667,
-      "currentPrice": 188.13,
-      "pl": 2.949999,
-      "plPercent": 0.525
+      "currentPrice": 188.5,
+      "pl": 4.059999,
+      "plPercent": 0.7230000000000001
     }
   ]
 }
